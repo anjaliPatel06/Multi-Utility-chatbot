@@ -3,15 +3,13 @@ import uuid
 import streamlit as st
 from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 
-# from chatbot_backend import (
-#     chatbot,
-#     ingest_pdf,
-#     retrieve_all_threads,
-#     thread_document_metadata,
-# )
-import requests
+from chatbot_backend import (
+    chatbot,
+    ingest_pdf,
+    retrieve_all_threads,
+    thread_document_metadata,
+)
 
-BACKEND_URL = "https://Multi-Utility-chatbot.onrender.com"
 
 # =========================== Utilities ===========================
 def generate_thread_id():

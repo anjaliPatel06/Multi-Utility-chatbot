@@ -1,6 +1,4 @@
 # Core
-fastapi
-uvicorn
 python-dotenv
 requests
 
