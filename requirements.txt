@@ -1,0 +1,37 @@
+# Core
+python-dotenv
+requests
+
+# LangChain ecosystem
+langchain
+langchain-core
+langchain-community
+langchain-text-splitters
+
+# LLM providers
+langchain-groq
+langchain-huggingface
+
+# Vector DB
+faiss-cpu
+
+# Embeddings
+sentence-transformers
+
+# LangGraph
+langgraph
+
+# Database checkpoint
+sqlite-utils
+
+# Frontend
+streamlit
+
+# Optional (but needed for PDF handling internally)
+pypdf
+
+torch
+torchvision
+langgraph-checkpoint-sqlite
+langgraph-prebuilt
+-U ddgs
