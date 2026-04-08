@@ -320,3 +320,42 @@ def thread_has_document(thread_id: str) -> bool:
 
 def thread_document_metadata(thread_id: str) -> dict:
     return _THREAD_METADATA.get(str(thread_id), {})
+
+
+from fastapi import FastAPI, UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+# CORS (important for frontend connection)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Chat endpoint
+@app.post("/chat")
+async def chat_api(query: str, thread_id: str):
+    from langchain_core.messages import HumanMessage
+
+    CONFIG = {
+        "configurable": {"thread_id": thread_id},
+    }
+
+    response = chatbot.invoke(
+        {"messages": [HumanMessage(content=query)]},
+        config=CONFIG,
+    )
+
+    return {"response": response["messages"][-1].content}
+
+
+# PDF upload endpoint
+@app.post("/upload")
+async def upload_pdf(file: UploadFile = File(...), thread_id: str = ""):
+    content = await file.read()
+    result = ingest_pdf(content, thread_id)
+    return result
